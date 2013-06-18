@@ -18,7 +18,7 @@ start () {
 
 stop () {
     # TODO: write a real kill script
-    ps aux | grep 'analyzer-agent.py start' | grep -v grep | awk '{print $2 }' | xargs sudo kill -9
+    ps aux | grep 'analyzer-agent.py start' | grep -v grep | awk '{print $2 }' | xargs kill -9
     /usr/bin/env python ../src/analyzer/analyzer-agent.py stop
         RETVAL=$?
         if [[ $RETVAL -eq 0 ]]; then
