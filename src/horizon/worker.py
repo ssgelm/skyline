@@ -96,7 +96,7 @@ class Worker(Process):
                 # Log progress
                 logger.info('queue size at %d' % self.q.qsize())
                 if settings.GRAPHITE_HOST != '':
-                    host = settings.GRAPHITE_HOST.replace('http://', '')
+                    host = settings.GRAPHITE_HOST.replace('http://', '').replace('https://', '')
                     system("echo skyline.horizon.queue_size %i %i | nc -w 3 %s 2003" % (self.q.qsize(), now, host))
 
             except Empty:

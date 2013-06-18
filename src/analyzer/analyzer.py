@@ -177,7 +177,7 @@ class Analyzer(Thread):
 
             # Log to Graphite
             if settings.GRAPHITE_HOST != '':
-                host = settings.GRAPHITE_HOST.replace('http://', '')
+                host = settings.GRAPHITE_HOST.replace('http://', '').replace('https://', '')
                 system('echo skyline.analyzer.run_time %.2f %s | nc -w 3 %s 2003' % ((time() - now), now, host))
 
             # Check canary metric
@@ -191,7 +191,7 @@ class Analyzer(Thread):
 
                 logger.info('duration        :: %.2f' % time_human)
                 if settings.GRAPHITE_HOST != '':
-                    host = settings.GRAPHITE_HOST.replace('http://', '')
+                    host = settings.GRAPHITE_HOST.replace('http://', '').replace('https://', '')
                     system('echo skyline.analyzer.duration %.2f %s | nc -w 3 %s 2003' % (time_human, now, host))
                     system('echo skyline.analyzer.projected %.2f %s | nc -w 3 %s 2003' % (projected, now, host))
 
